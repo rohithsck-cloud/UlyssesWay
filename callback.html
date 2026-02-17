@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Redirecting...</h1>
+<h1>Redirecting back to app...</h1>
 <script>
-    // Extract the authorization code from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
+const urlParams = new URLSearchParams(window.location.search);
+const code = urlParams.get('code');
+const error = urlParams.get('error');
 
-    // For mobile app, use a custom URL scheme to send back to app
-    if (code) {
-        window.location.href = `ulyssesway://oauth/callback?code=${code}`;
-    }
+if (code) {
+    window.location.href = `ulyssesway://oauth/callback?code=${code}`;
+} else if (error) {
+    window.location.href = `ulyssesway://oauth/callback?error=${error}`;
+}
 </script>
 </body>
 </html>
